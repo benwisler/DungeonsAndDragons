@@ -8,6 +8,9 @@ var currentSR;
 var currentJob;
 var newCharacter;
 var charName;
+var baseAttr = [];
+var modAttr = [];
+var combAttr = [];
 
 var request = require("request");
 
