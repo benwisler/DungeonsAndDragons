@@ -11,6 +11,10 @@ var charName;
 var baseAttr = [];
 var modAttr = [];
 var combAttr = [];
+var dieOne;
+var dieTwo;
+var dieThree;
+var dieFour;
 
 var request = require("request");
 
