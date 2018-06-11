@@ -1,9 +1,9 @@
 .container {
     height: 100%;
     display: grid;
-    grid-gap: 3px;
+    grid-gap: 4px;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 125px auto 100px;
+    grid-template-rows: 170px auto 100px;
 }
 
 .container>div {
@@ -11,7 +11,7 @@
     justify-content: center;
     align-items: center;
     font-size: 2em;
-    color: #b4ae94;
+    color: #282828;
 }
 
 .responsive {
@@ -22,30 +22,78 @@
 html,
 body {
     box-sizing: border-box;
-    background-color: #b4ab86;
+    background-image: url("../images/blkdragonscales");
+    background-repeat: repeat;
+    background-color: #000000;
     height: 100%;
     padding: 10px;
     margin: 0px;
 }
 
+h1 {
+    color: #000000;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 2em;
+}
+
+a {
+    color: #000000;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: 1em;
+    text-decoration: none;
+}
+
+.form {
+
+    border-radius: 20px 50px 20px 50px/50px 20px 50px 20px;
+    background-color: #858585;
+    padding: 40px;
+}
+
+.button {
+    background-color: #525252;
+    border: none;
+    border-radius: 20px 50px 20px 50px/50px 20px 50px 20px;
+    color: #000000;
+    padding: 12px 70px;
+    text-align: center;
+    text-decoration: none;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    display: inline-block;
+    font-size: 30px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.forgot-password {
+    color: #000000;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size: .75em;
+    text-decoration: none;
+}
+
 .header {
     grid-column: 1 / -1;
+    border-radius: 50px 20px 50px 20px/20px 50px 20px 50px;
 }
 
 .menu {
     grid-column: 1 / 3;
+    border-radius: 50px 20px 50px 20px/20px 50px 20px 50px;
 }
 
 .content {
     grid-column: 3 / -1;
+    border-radius: 50px 20px 50px 20px/20px 50px 20px 50px;
 }
 
 .footer {
     grid-column: 1 / -1;
+    border-radius: 50px 20px 50px 20px/20px 50px 20px 50px;
 }
 
 .container>div:nth-child(1n) {
-    background-color: #e8be18;
+    background-color: rgb(0, 0, 0);
 }
 
 .container>div:nth-child(3n) {
@@ -57,5 +105,171 @@ body {
 }
 
 .container>div:nth-child(4n) {
-    background-color: #e8be18;
+    background-color: #D4AF37;
+}
+
+.form {
+    grid-column: 4 / 11
+}
+
+input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 50px 20px 50px 20px/20px 50px 20px 50px;
+    box-sizing: border-box;
+}
+
+input[type=email], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 20px 50px 20px 50px/50px 20px 50px 20px;
+    box-sizing: border-box;
+}
+
+input[type=password], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 50px 20px 50px 20px/20px 50px 20px 50px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        height: 100%;
+        display: grid;
+        grid-gap: 4px;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: 100px 50px auto 25px;
+    }
+    .header {
+        grid-row: 1;
+        grid-column: span 12;
+    }
+    .menu {
+        grid-row: 2;
+        grid-column: span 12;
+    }
+    .content {
+        grid-column: span 12;
+    }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) {
+    .container {
+        height: 100%;
+        display: grid;
+        grid-gap: 4px;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: 200px 100px auto 75px;
+    }
+    .header {
+        grid-row: 1;
+        grid-column: span 12;
+    }
+    .menu {
+        grid-row: 2;
+        grid-column: span 12;
+    }
+    .content {
+        grid-column: span 12;
+    }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape) {
+    .container {
+        height: 100%;
+        display: grid;
+        grid-gap: 4px;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: 100px auto 25px;
+    }
+    .responsive {
+        max-width: auto;
+        height: 100px;
+    }
+    .header {
+        grid-row: 1;
+        grid-column: span 12;
+        border-radius: 50px 20px 50px 20px/20px 50px 20px 50px;
+    }
+    .menu {
+        grid-column: 1 / 3;
+        border-radius: 50px 20px 50px 20px/20px 50px 20px 50px;
+    }
+    .content {
+        grid-column: 3 / -1;
+        border-radius: 50px 20px 50px 20px/20px 50px 20px 50px;
+    }
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) {
+    .container {
+        height: 100%;
+        display: grid;
+        grid-gap: 4px;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: 200px 100px auto 75px;
+    }
+    .header {
+        grid-row: 1;
+        grid-column: span 12;
+    }
+    .menu {
+        grid-row: 2;
+        grid-column: span 12;
+    }
+    .content {
+        grid-column: span 12;
+    }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: portrait) {
+    .container {
+        height: 100%;
+        display: grid;
+        grid-gap: 4px;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: 200px 100px auto 75px;
+    }
+    .header {
+        grid-row: 1;
+        grid-column: span 12;
+    }
+    .menu {
+        grid-row: 2;
+        grid-column: span 12;
+    }
+    .content {
+        grid-column: span 12;
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+    .container {
+        height: 100%;
+        display: grid;
+        grid-gap: 4px;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: 200px 100px auto 75px;
+    }
+    .header {
+        grid-row: 1;
+        grid-column: span 12;
+    }
+    .menu {
+        grid-row: 2;
+        grid-column: span 12;
+    }
+    .content {
+        grid-column: span 12;
+    }
 }
