@@ -11,10 +11,8 @@ var charName;
 var baseAttr = [];
 var modAttr = [];
 var combAttr = [];
-var dieOne;
-var dieTwo;
-var dieThree;
-var dieFour;
+var hp;
+var charHitDie;
 
 var request = require("request");
 
@@ -26,12 +24,21 @@ request("http://www.dnd5eapi.co/api/races/" + race, function(
   console.log("error:", error); // Print the error if one occurred
   console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
   var currentRace = JSON.parse(body);
+  modAttr = currentRace.ability_bonuses;
+  baseAttr = [15, 14, 13, 12, 10, 8];
+  for (var i = 0; i < 6; i++) {
+    var newVal = baseAttr[i] + modAttr[i];
+    combAttr.push(newVal);
+  }
+  console.log("Attribute Modifiers:", modAttr);
+  console.log("Base Attributes:", baseAttr);
+  console.log("Combined Attributes:", combAttr);
   console.log("-------------------------------------");
   console.log("Race:", currentRace.name);
   if (currentRace.hasOwnProperty("subraces")) {
     if (currentRace.subraces.length === 0) {
       console.log("Subrace: N/A");
-      currentSR = "N/A"
+      currentSR = "N/A";
     } else if (currentRace.subraces.length === 1) {
       newSR = currentRace.subraces[0];
       console.log("Subrace:", newSR.name);
@@ -58,15 +65,28 @@ request("http://www.dnd5eapi.co/api/races/" + race, function(
     var newJob = JSON.parse(body);
     console.log("Job:", newJob.name);
     currentJob = newJob.name;
+    charHitDie = newJob.hit_die;
+    hp = charHitDie + combAttr[2];
+    console.log("HP:",hp);
 
+
+
+
+
+
+
+
+
+
+    
     newCharacter = {
-        characterName: charName,
-        characterGender: currentGender,
-        characterRace: currentRace.name,
-        characterSR: currentSR,
-        characterJob: currentJob
-      };
-      console.log(newCharacter);
+      characterHP: hp,
+      characterGender: currentGender,
+      characterRace: currentRace.name,
+      characterSR: currentSR,
+      characterJob: currentJob,
+      characterAttr: combAttr
+    };
+    console.log(newCharacter);
   });
-
 });
