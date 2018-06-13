@@ -25,21 +25,21 @@
 
             <div class="form">
 
-                <h1>Login here</h1>
+                <h1>User Login: </h1>
 
                 <form class="login" action="/login" method="post">
 
                     <div>
-                        <label for="username">Username</label>
-                        <input type="text" name="username" id="username">
+                        <label class="user-login" for="username">Username: </label>
+                        <input class="login-text" type="text" name="username" id="username">
                     </div>
                     <div>
-                        <label for="password">Password</label>
-                        <input type="password" name="password" id="password">
+                        <label class="login-password" for="password">Password: </label>
+                        <input class="input-password" type="password" name="password" id="password">
                     </div>
 
                     <div class="actions">
-                        <input type="button" class="button" name="login" value="Login">
+                        <input type="button" class="login-button" name="login" value="Login">
                         <p><a href="/forgot" class="forgot-password">I forgot my password</a></p>
                     </div>
                 </form>
