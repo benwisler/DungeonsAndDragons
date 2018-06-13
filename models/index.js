@@ -1,6 +1,7 @@
 "use strict";
 
 var fs = require("fs");
+var express= require("express");
 var path = require("path");
 var Sequelize = require("sequelize");
 var basename = path.basename(module.filename);
@@ -28,7 +29,7 @@ fs
   })
   .forEach(function(file) {
     var model = sequelize["import"](path.join(__dirname, file));
-    db[model.username] = model;
+    db[model.name] = model;
   });
 
 Object.keys(db).forEach(function(modelName) {

@@ -1,1 +1,1 @@
-INSERT INTO users (username, password) VALUES ('Test', "Test");
+INSERT INTO users (username, email, password) VALUES ('Test', "Test@Test.com", "Test");

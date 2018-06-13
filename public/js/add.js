@@ -6,7 +6,8 @@ $("#newUserSubmit").on("click", function(event) {
       // name from name input
       username: $("#newUsername").val().trim(),
       // role from role input
-      password: $("#newPassword").val().trim(),
+      email: $("#newEmail").val().trim(),
+      password: $("#newPassword").val().trim()
 
     };
   
@@ -22,6 +23,8 @@ $("#newUserSubmit").on("click", function(event) {
   
     // empty each input box by replacing the value with an empty string
     $("#newUsername").val("");
+    $("#newEmail").val("");
+
     $("#newPassword").val("");
   
   });
