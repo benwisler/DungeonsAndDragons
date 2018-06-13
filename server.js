@@ -1,26 +1,44 @@
-var express = require("express");
-var bodyParser = require("body-parser");
 
-var PORT = process.env.PORT || 8080;
-
+var express = require('express');
 var app = express();
-var db = require("./models");
-// Serve static content for the app from the "public" directory in the application directory.
-
-// parse application/x-www-form-urlencoded
+var passport   = require('passport')
+var session    = require('express-session')
+var bodyParser = require('body-parser')
+var env = require('dotenv').load();
+//For BodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// parse application/json
 app.use(bodyParser.json());
-
-
-
-app.use(express.static("public"));
-require("./app/routes/html-routes.js")(app);
+// For Passport
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
 require("./app/routes/api-routes.js")(app);
-// Start our server so that it can begin listening to client requests.
-db.sequelize.sync({ force: true }).then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  });
+require("./app/routes/html-routes.js")(app);
+app.use(passport.initialize());
+ 
+app.use(passport.session()); // persistent login sessions
+app.get('/', function(req, res) {
+ 
+    res.redirect("/login");
+ 
+});
+
+//Models
+var models = require("./app/models");
+ 
+//Sync Database
+models.sequelize.sync().then(function() {
+ 
+    console.log('Nice! Database looks fine')
+ 
+}).catch(function(err) {
+ 
+    console.log(err, "Something went wrong with the Database Update!")
+ 
+});
+ 
+app.listen(8080, function(err) {
+ 
+    if (!err)
+        console.log("Site is live");
+    else console.log(err)
+ 
 });
