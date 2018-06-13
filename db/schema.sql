@@ -3,10 +3,11 @@ DROP DATABASE IF EXISTS users;
 CREATE DATABASE users;
 USE users;
 
-CREATE TABLE userInfo
+CREATE TABLE users
 (
 	id int NOT NULL AUTO_INCREMENT,
 	username varchar(255) NOT NULL,
+	email VARCHAR(255) NOT NULL,
 	password varchar(255) NOT NULL,
 	PRIMARY KEY (id)
 );
