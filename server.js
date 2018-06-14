@@ -10,20 +10,24 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // For Passport
 app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
-require("./app/routes/api-routes.js")(app);
-require("./app/routes/html-routes.js")(app);
 app.use(passport.initialize());
  
 app.use(passport.session()); // persistent login sessions
+require("./app/routes/api-routes.js")(app);
+require("./app/routes/html-routes.js")(app);
+//Models
+
+
 app.get('/', function(req, res) {
- 
-    res.redirect("/login");
+
+  console.log("You're in!")
  
 });
-
-//Models
 var models = require("./app/models");
- 
+var authRoute = require('./app/routes/auth.js')(app, passport);
+require('./app/config/passport.js')(passport, models.user);
+//load passport strategies
+
 //Sync Database
 models.sequelize.sync().then(function() {
  

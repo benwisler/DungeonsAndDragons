@@ -5,6 +5,7 @@ $(document).ready(function() {
   
     // When the form is submitted, we validate there's an email and password entered
     $("#login").on("click", function(event) {
+      console.log("CLICKED")
       event.preventDefault();
       var userData = {
         username: username.val().trim(),
@@ -23,7 +24,7 @@ $(document).ready(function() {
   
     // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
     function loginUser(username, password) {
-      $.post("/api/login", {
+      $.post("/signin", {
         username: username,
         password: password
       }).then(function(data) {

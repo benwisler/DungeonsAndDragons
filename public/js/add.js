@@ -1,6 +1,6 @@
 $("#newUserSubmit").on("click", function(event) {
     event.preventDefault();
-  
+    console.log("CLICKED")
     // make a newCharacter obj
     var newUser = {
       // name from name input
@@ -12,7 +12,7 @@ $("#newUserSubmit").on("click", function(event) {
     };
   
     // send an AJAX POST-request with jQuery
-    $.post("/api/new", newUser)
+    $.post("/signup", newUser)
       // on success, run this callback
       .then(function(data) {
         // log the data we found
