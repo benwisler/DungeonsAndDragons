@@ -1,6 +1,7 @@
 var race = Math.floor(Math.random() * 9) + 1;
 var currentRace;
-var profession = Math.floor(Math.random() * 12) + 1;
+// var profession = Math.floor(Math.random() * 12) + 1;
+var profession = 8;
 var newJob;
 var gender = Math.floor(Math.random() * 2) + 1;
 var currentGender;
@@ -124,6 +125,13 @@ request("http://www.dnd5eapi.co/api/races/" + race, function(
         for (var i = 0; i < startEquip.starting_equipment.length; i++) {
           console.log(sec[i].item.name);
           charStartEquip.push(sec[i].item.name);
+        };
+        var ctm = startEquip.choices_to_make;
+        console.log("CTM:",ctm);
+        for (var i = 0; i < ctm; i++) {
+          var j = i + 1;
+          var cc = "choice_" + j
+          console.log(startEquip.choice_1[0])
         }
       }
       newCharacter = {
@@ -141,3 +149,5 @@ request("http://www.dnd5eapi.co/api/races/" + race, function(
 
   });
 });
+
+module.exports(CharGen);
