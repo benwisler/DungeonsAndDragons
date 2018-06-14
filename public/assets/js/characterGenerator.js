@@ -17,6 +17,7 @@ var hp;
 var charHitDie;
 var charProf = [];
 var choiceArray = [];
+var charStartEquip = [];
 
 var request = require("request");
 
@@ -112,17 +113,31 @@ request("http://www.dnd5eapi.co/api/races/" + race, function(
       charProf.push(chosenArray[i]);
     }
 
+      // All Requests involving the Starting Equipment
+  request(
+    "http://www.dnd5eapi.co/api/startingequipment/" + profession,
+    function(error, response, body) {
+      startEquip = JSON.parse(body);
+      // Standard Starting Equipment
+      if (startEquip.hasOwnProperty("starting_equipment")) {
+        var sec = startEquip.starting_equipment;
+        for (var i = 0; i < startEquip.starting_equipment.length; i++) {
+          console.log(sec[i].item.name);
+          charStartEquip.push(sec[i].item.name);
+        }
+      }
+      newCharacter = {
+        characterHP: hp,
+        characterGender: currentGender,
+        characterRace: currentRace.name,
+        characterSR: currentSR,
+        characterJob: currentJob,
+        characterAttr: combAttr,
+        characterProf: charProf,
+        characterEquip: charStartEquip
+      };
+      console.log(newCharacter);
+    });
 
-
-    newCharacter = {
-      characterHP: hp,
-      characterGender: currentGender,
-      characterRace: currentRace.name,
-      characterSR: currentSR,
-      characterJob: currentJob,
-      characterAttr: combAttr,
-      characterProf: charProf
-    };
-    console.log(newCharacter);
   });
 });
