@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Characters.associate = function (models) {
-    models.Characters.belongsTo(models.User, {
+    models.Characters.belongsTo(models.user, {
       onDelete: "CASCADE",
       foreignKey: {
         allowNull: false
