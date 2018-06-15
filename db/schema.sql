@@ -1,13 +1,20 @@
 ### Schema
-DROP DATABASE IF EXISTS users;
-CREATE DATABASE users;
-USE users;
+DROP DATABASE IF EXISTS dungeonsdb;
+CREATE DATABASE dungeonsdb;
+USE dungeonsdb;
 
 CREATE TABLE users
 (
 	id int NOT NULL AUTO_INCREMENT,
-	username varchar(255) NOT NULL,
+	username VARCHAR(255) NOT NULL,
 	email VARCHAR(255) NOT NULL,
-	password varchar(255) NOT NULL,
+	password VARCHAR(255) NOT NULL,
 	PRIMARY KEY (id)
 );
+
+CREATE TABLE character
+(
+	id int NOT NULL AUTO_INCREMENT,
+	name VARCHAR(255) NOT NULL
+
+)
