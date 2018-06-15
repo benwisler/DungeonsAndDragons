@@ -1,18 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Screen After Login</title>
+    <link rel="stylesheet" href="assets/css/reset.css" type="text/css" />
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+    <title>Dungeons and Dragons Character Creator</title>
 </head>
+
 <body>
-    <div class="menu">
-        <div>
-            <p><a href="/home">Home</a></p>
-            <p>Characters</p>
-            <p>Create</p>
+    <div class="container">
+        <div class="header">
+            <img src="assets/images/dungeonsheader.png" alt="header" class="responsive">
+        </div>
+
+        <div class="menu">
+            <div>
+                <p><a href="/home">Home</a></p>
+                <p>Characters</p>
+                <p>Create</p>
+            </div>
+        </div>
+
+        <div class="content">
+            <div> 
+                <form class="create-new-character">
+                    <input type="button" class="create-character-button" name="save" value="Create New Character">
+                </form>
+            </div>
+            <div>
+                <form class="show-all-characters">
+                    <input type="button" class="get-all-character-button" name="save" value="See All Characters"> 
+                </form>
+            </div>
+            
+            
+        </div>
+
+        <div class="footer">
+
         </div>
     </div>
-</body>
-</html>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/home.js"></script>
+    </html>
