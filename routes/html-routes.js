@@ -32,7 +32,7 @@ module.exports = function (app) {
   });
 
   app.get("/displayCharacter", function(req, res) {
-    if (req.user) {
+    if (!req.user) {
       res.redirect("/home");
     }
     res.sendFile(path.join(__dirname, "../public/displayCharacter.html"));

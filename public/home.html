@@ -3,12 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/css/reset.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     <title>Dungeons and Dragons Character Creator</title>
+    <script src="assets/js/characterGenerator.js" type="text/javascript"></script>
 </head>
 
 <body>
+
     <div class="container">
         <div class="header">
             <img src="assets/images/dungeonsheader.png" alt="header" class="responsive">
@@ -21,13 +27,17 @@
                 <p>Create</p>
             </div>
         </div>
+<!-- <script>
+    createCharacter();
 
+</script> -->
         <div class="content">
             <div> 
                 <form class="create-new-character">
-                    <input type="button" class="create-character-button" name="save" value="Create New Character">
+                    <input id="createCharacter" type="button" class="create-character-button" name="save" value="Create New Character">
                 </form>
             </div>
+
             <div>
                 <form class="show-all-characters">
                     <input type="button" class="get-all-character-button" name="save" value="See All Characters"> 

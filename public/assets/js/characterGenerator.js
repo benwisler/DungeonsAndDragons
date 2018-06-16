@@ -1,3 +1,7 @@
+// $(document).ready(function() {
+// $("#createCharacter").on("click", function() {
+//   event.preventDefault();
+module.exports = function createCharacter() {
 var race = Math.floor(Math.random() * 9) + 1;
 var currentRace;
 var profession = Math.floor(Math.random() * 12) + 1;
@@ -17,8 +21,8 @@ var hp;
 var charHitDie;
 var charProf = [];
 var choiceArray = [];
-
 var request = require("request");
+
 
 request("http://www.dnd5eapi.co/api/races/" + race, function(
   error,
@@ -143,5 +147,24 @@ request("http://www.dnd5eapi.co/api/races/" + race, function(
   console.log(newChar.characterProf);
   console.log("--------------------");
   console.log("--------------------");
-  });
+  console.log(newChar)
+  return newChar;
+
+  // $.post("/api/createCharacter", {
+  //   characterHP: characterHP,
+  //   characterGender: characterGender,
+  //   characterRace: characterRace,
+  //   characterSR: characterSR,
+  //   characterJob: characterJob,
+  //   characterAttr: characterAttr,
+  //   characterProf: characterProf
+  // });
+
 });
+
+})
+
+}
+
+// module.exports = createCharacter;
+// })
