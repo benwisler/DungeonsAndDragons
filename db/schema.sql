@@ -1,20 +1,2 @@
-### Schema
-DROP DATABASE IF EXISTS dungeonsdb;
-CREATE DATABASE dungeonsdb;
-USE dungeonsdb;
-
-CREATE TABLE users
-(
-	id int NOT NULL AUTO_INCREMENT,
-	username VARCHAR(255) NOT NULL,
-	email VARCHAR(255) NOT NULL,
-	password VARCHAR(255) NOT NULL,
-	PRIMARY KEY (id)
-);
-
-CREATE TABLE character
-(
-	id int NOT NULL AUTO_INCREMENT,
-	name VARCHAR(255) NOT NULL
-
-)
+DROP DATABASE IF EXISTS dragondb;
+CREATE DATABASE dragondb;
