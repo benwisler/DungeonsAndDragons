@@ -1,7 +1,6 @@
 var race = Math.floor(Math.random() * 9) + 1;
 var currentRace;
-// var profession = Math.floor(Math.random() * 12) + 1;
-var profession = 8;
+var profession = Math.floor(Math.random() * 12) + 1;
 var newJob;
 var gender = Math.floor(Math.random() * 2) + 1;
 var currentGender;
@@ -18,7 +17,6 @@ var hp;
 var charHitDie;
 var charProf = [];
 var choiceArray = [];
-var charStartEquip = [];
 
 var request = require("request");
 
@@ -114,38 +112,6 @@ request("http://www.dnd5eapi.co/api/races/" + race, function(
       charProf.push(chosenArray[i]);
     }
 
-      // All Requests involving the Starting Equipment
-  request(
-    "http://www.dnd5eapi.co/api/startingequipment/" + profession,
-    function(error, response, body) {
-      startEquip = JSON.parse(body);
-      // Standard Starting Equipment
-      if (startEquip.hasOwnProperty("starting_equipment")) {
-        var sec = startEquip.starting_equipment;
-        for (var i = 0; i < startEquip.starting_equipment.length; i++) {
-          console.log(sec[i].item.name);
-          charStartEquip.push(sec[i].item.name);
-        };
-        var ctm = startEquip.choices_to_make;
-        console.log("CTM:",ctm);
-        for (var i = 0; i < ctm; i++) {
-          var j = i + 1;
-          var cc = "choice_" + j
-          console.log(startEquip.choice_1[0])
-        }
-      }
-      newCharacter = {
-        characterHP: hp,
-        characterGender: currentGender,
-        characterRace: currentRace.name,
-        characterSR: currentSR,
-        characterJob: currentJob,
-        characterAttr: combAttr,
-        characterProf: charProf,
-        characterEquip: charStartEquip
-      };
-      console.log(newCharacter);
-    });
 
 
     newCharacter = {
@@ -180,5 +146,3 @@ request("http://www.dnd5eapi.co/api/races/" + race, function(
   console.log("--------------------");
   });
 });
-
-module.exports(CharGen);
