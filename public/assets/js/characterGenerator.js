@@ -147,6 +147,37 @@ request("http://www.dnd5eapi.co/api/races/" + race, function(
       console.log(newCharacter);
     });
 
+
+    newCharacter = {
+      characterHP: hp,
+      characterGender: currentGender,
+      characterRace: currentRace.name,
+      characterSR: currentSR,
+      characterJob: currentJob,
+      characterAttr: combAttr,
+      characterProf: charProf
+  };
+  var newChar = newCharacter;
+  console.log(newChar);
+  console.log("--------------------");
+  console.log("--------------------");
+  console.log("--------------------");
+  $(".hp").text(newChar.characterHP);
+  console.log(newChar.characterHP);
+  console.log("--------------------");
+  console.log(newChar.characterGender);
+  console.log("--------------------");
+  console.log(newChar.characterRace);
+  console.log("--------------------");
+  console.log(newChar.characterSR);
+  console.log("--------------------");
+  console.log(newChar.characterJob);
+  console.log("--------------------");
+  console.log(newChar.characterAttr);
+  console.log("--------------------");
+  console.log(newChar.characterProf);
+  console.log("--------------------");
+  console.log("--------------------");
   });
 });
 
