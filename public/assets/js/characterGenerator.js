@@ -128,7 +128,6 @@ request("http://www.dnd5eapi.co/api/races/" + race, function(
   console.log("--------------------");
   console.log("--------------------");
   console.log("--------------------");
-  $(".hp").text(newChar.characterHP);
   console.log(newChar.characterHP);
   console.log("--------------------");
   console.log(newChar.characterGender);
