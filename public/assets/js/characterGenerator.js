@@ -1,6 +1,7 @@
 // $(document).ready(function() {
 // $("#createCharacter").on("click", function() {
 //   event.preventDefault();
+
 module.exports = function createCharacter() {
 var race = Math.floor(Math.random() * 9) + 1;
 var currentRace;
@@ -149,6 +150,8 @@ request("http://www.dnd5eapi.co/api/races/" + race, function(
   console.log("--------------------");
   console.log(newChar)
   return newChar;
+
+
 
   // $.post("/api/createCharacter", {
   //   characterHP: characterHP,

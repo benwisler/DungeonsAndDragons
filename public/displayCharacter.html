@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     <title>Dungeons and Dragons Character Creator</title>
     <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="assets/js/characterGenerator.js"></script>
 </head>
 
 <body>
@@ -54,6 +55,11 @@
     </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/randomChar.js"></script>
+
+<script>
+    var randChar = require("./assets/js/characterGenerator.js");
+    createCharacter();
+$(".hp").append(newChar.characterHP);
+</script>
 
 </html>
