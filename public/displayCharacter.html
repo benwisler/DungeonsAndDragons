@@ -16,7 +16,9 @@
         </div>
         <div class="menu">
             <div>
-                <p><a href="index.html">Home</a></p>
+                <p>
+                    <a href="index.html">Home</a>
+                </p>
                 <p>Characters</p>
                 <p>Create</p>
             </div>
@@ -27,8 +29,11 @@
                     <label class="char-name" for="charName">Character Name: </label>
                     <input class="input-char-text" type="text" name="charName" id="charName">
                     <input type="button" class="char-name-button" name="save" value="Save">
+                    <input type="button" id="random" class="char-name-button" name="generate" value="Random">
                 </div>
-                <div class="race">Race: </div>
+                <div id="g" class="race">Gender: </div>
+                <div id="r" class="race">Race: </div>
+                <div id="sr" class="race">SubRace: </div>
                 <div class="prof">Class: </div>
                 <div class="hp">HP: </div>
                 <div class="ability">
@@ -39,11 +44,11 @@
                     <div class="wisdom">WIS</div>
                     <div class="charisma">CHA</div>
                 </div>
-                <div class="proficiencies">Proficiencies 
+                <div class="proficiencies">Proficiencies
 
                 </div>
-                <div class="equipment">Equipment
-                    
+                <div class="equipment">Traits
+
                 </div>
 
             </div>
@@ -54,6 +59,178 @@
     </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="js/randomChar.js"></script>
+
+<script>
+    var randRace = Math.floor(Math.random() * 9) + 1;
+    var raceObject;
+    var race;
+    var randJob = Math.floor(Math.random() * 12) + 1;
+    var jobObject;
+    var charJob;
+    var randGender = Math.floor(Math.random() * 2) + 1;
+    var gender;
+    var combAttr = [];
+    var charProf = [];
+    var choiceArray = [];
+    var traits = [];
+    var newCharacter = {
+        characterHP: 0,
+        characterGender: "male",
+        characterRace: " ",
+        characterSR: "subrace",
+        characterJob: " ",
+        characterAttr: "attributes",
+        characterProf: "proficiencies",
+        characterTraits: "traits"
+    };;
+
+    function generateCharacter() {
+        // Gender
+        if (randGender === 1) {
+            gender = "Male";
+        } else {
+            gender = "Female";
+        }
+        newCharacter.characterGender = gender;
+
+        // Race
+        $.getJSON("http://www.dnd5eapi.co/api/races/" + randRace, raceStats)
+    };
+    function raceStats(data) {
+        raceObject = data;
+        var modAttr = raceObject.ability_bonuses;
+        var baseAttr = [15, 14, 13, 12, 10, 8];
+        for (var i = 0; i < 6; i++) {
+            var newVal = baseAttr[i] + modAttr[i];
+            combAttr.push(newVal);
+        }
+        race = raceObject.name;
+        console.log(race);
+        newCharacter.characterRace = race
+        var traitList = raceObject.traits;
+        for (i = 0; i < traitList.length; i++) {
+            traits.push(traitList[i].name);
+        }
+        newCharacter.characterTraits = traits;
+        // SubRaces
+        if (raceObject.hasOwnProperty("subraces")) {
+            if (raceObject.subraces.length === 0) {
+                console.log("Subrace: N/A");
+                currentSR = "N/A";
+            } else if (raceObject.subraces.length === 1) {
+                newSR = raceObject.subraces[0];
+                console.log("Subrace:", newSR.name);
+                currentSR = newSR.name;
+            } else {
+                sr = Math.floor(Math.random() * raceObject.subraces.length);
+                newSR = raceObject.subraces[sr];
+                console.log("Subrace:", newSR.name);
+                currentSR = newSR.name;
+            }
+            newCharacter.characterSR = currentSR;
+        }
+        // Job
+        $.getJSON("http://www.dnd5eapi.co/api/classes/" + randJob, jobStats)
+        function jobStats(data) {
+            jobObject = data;
+            charJob = jobObject.name;
+            var charHitDie = jobObject.hit_die
+            var hp = charHitDie + combAttr[2];
+            console.log(charJob);
+            newCharacter.characterJob = charJob;
+            newCharacter.characterHP = hp;
+            var profLength = raceObject.starting_proficiencies.length;
+            for (var i = 0; i < profLength; i++) {
+                var cp = raceObject.starting_proficiencies[i];
+                charProf.push(cp.name);
+            }
+
+            if (raceObject.hasOwnProperty("starting_proficiency_options")) {
+                var profOpsLength = raceObject.starting_proficiency_options.from.length;
+                console.log(profOpsLength);
+                var numProfOps = raceObject.starting_proficiency_options.choose;
+                console.log(numProfOps);
+                var rprof = Math.floor(Math.random() * profOpsLength);
+                var newrprof = raceObject.starting_proficiency_options.from[rprof];
+                console.log(newrprof.name);
+                charProf.push(newrprof.name);
+            }
+            var classProfLength = jobObject.proficiencies.length;
+            for (var i = 0; i < classProfLength; i++) {
+                var cp = jobObject.proficiencies[i];
+                charProf.push(cp.name);
+            }
+            var choices = jobObject.proficiency_choices[0];
+            var numChoices = choices.choose;
+            console.log(numChoices);
+            console.log(choices.from.length);
+            for (var i = 0; i < choices.from.length; i++) {
+                choiceArray.push(choices.from[i].name);
+            }
+            console.log(choiceArray.length);
+            var chosenArray = [];
+            for (var i = 0; i < numChoices; i++) {
+                var rnd = Math.floor(Math.random() * (choiceArray.length - 1));
+                chosenArray.push(choiceArray[rnd]);
+                choiceArray.splice(rnd, 1);
+            }
+            for (var i = 0; i < chosenArray.length; i++) {
+                charProf.push(chosenArray[i]);
+            }
+
+            newCharacter.characterProf = charProf;
+
+            // Verify Pushed Data
+            verifyObject();
+        };
+
+    };
+
+    function verifyObject() {
+        console.log(newCharacter);
+        fillPage();
+    }
+
+
+
+
+    ;
+    $("#random").click(randomize);
+
+    function randomize() {
+        randRace = Math.floor(Math.random() * 9) + 1;
+        randJob = Math.floor(Math.random() * 12) + 1
+        randGender = Math.floor(Math.random() * 2) + 1;
+        charProf = [];
+        combAttr = [];
+        traits = [];
+        generateCharacter();
+    };
+
+    function fillPage() {
+        console.log(newCharacter);
+        $("#g").html("Gender: " + newCharacter.characterGender);
+        $("#r").html("Race: " + newCharacter.characterRace);
+        $("#sr").html("SubRace: " + newCharacter.characterSR);
+        $(".prof").html("Class" + ': ' + newCharacter.characterJob);
+        $(".hp").html("HP" + ': ' + newCharacter.characterHP);
+        $(".strength").html("STR" + ': ' + combAttr[0]);
+        $(".dexterity").html("DEX" + ': ' + combAttr[1]);
+        $(".constitution").html("CON" + ': ' + combAttr[2]);
+        $(".intelligence").html("INT" + ': ' + combAttr[3]);
+        $(".wisdom").html("WIS" + ': ' + combAttr[4]);
+        $(".charisma").html("CHA" + ': ' + combAttr[5]);
+        var profList = "<ul>";
+        for (i = 0; i < newCharacter.characterProf.length; i++) {
+            profList += '<li>' + newCharacter.characterProf[i] + '</li>'
+        }
+        $(".proficiencies").html("Proficiencies" + '<hr>' + profList + '</ul');
+        var traitList = "<ul>";
+        for (i = 0; i < newCharacter.characterTraits.length; i++) {
+            traitList += '<li>' + newCharacter.characterTraits[i] + '</li>'
+        }
+        $(".equipment").html("Traits" + '<hr>' + traitList + '</ul');
+    };
+</script>
 
 </html>
