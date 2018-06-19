@@ -2,7 +2,7 @@
 // $("#createCharacter").on("click", function() {
 //   event.preventDefault();
 
-module.exports = function createCharacter() {
+function createCharacter() {
 var race = Math.floor(Math.random() * 9) + 1;
 var currentRace;
 var profession = Math.floor(Math.random() * 12) + 1;
@@ -171,3 +171,5 @@ request("http://www.dnd5eapi.co/api/races/" + race, function(
 
 // module.exports = createCharacter;
 // })
+
+createCharacter();
